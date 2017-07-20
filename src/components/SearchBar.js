@@ -15,6 +15,7 @@ export default class SearchBar extends Component {
         this.setState({
             term : ev.target.value
         });
+        this.props.onSearchTermChange(ev.target.value);
     }
 
     render () {

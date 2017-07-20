@@ -16,14 +16,16 @@ export default class App extends Component {
             videos: [],
             selectedVideo: null
         };
-
-        this.handleVideoSelect = this.handleVideoSelect.bind(this);
     }
 
     componentDidMount() {
+        this.videoSearch('telekinesis');
+    }
+
+    videoSearch(term) {
         YTSearch({
             key: API_KEY,
-            term: 'telekinesis'
+            term
         }, videos => this.setState({
             videos,
             selectedVideo: videos[0]
@@ -37,10 +39,10 @@ export default class App extends Component {
     render() {
         return (
             <div className="container-fluid row">
-                <SearchBar />
+                <SearchBar onSearchTermChange={this.videoSearch.bind(this)}/>
                 <VideoDetail video={this.state.selectedVideo}/>
                 <VideoList videos={this.state.videos}
-                           onVideoSelect={this.handleVideoSelect}
+                           onVideoSelect={this.handleVideoSelect.bind(this)}
                 />
             </div>
         )
