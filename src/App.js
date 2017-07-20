@@ -4,6 +4,8 @@ import SearchBar from './components/SearchBar';
 import VideoList from './components/VideoList';
 import VideoDetail from './components/VideoDetail';
 
+import './less/style.less'
+
 const API_KEY = 'AIzaSyCM_F3I-Q72C1bLqPUYRYBK0dVZ2QLcHeA';
 
 export default class App extends Component {
