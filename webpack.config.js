@@ -11,15 +11,27 @@ module.exports = {
         app: [
             'react-hot-loader/patch',
             APP_DIR + '/index'
+        ],
+        bootstrap: [
+            'jquery',
+            'bootstrap/dist/css/bootstrap.css',
+            'bootstrap/dist/js/bootstrap',
         ]
     },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
         path: BUILD_DIR,
         publicPath: "/"
     },
     module: {
         rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
             {
                 test: /\.less$/,
                 use: [
@@ -27,12 +39,10 @@ module.exports = {
                     'css-loader',
                     'less-loader'
                 ],
-                include: APP_DIR
             },
             {
-                test: /\.(gif|png|svg|jpe?g)$/,
+                test: /\.(gif|png|svg|jpe?g|woff2?|ttf|eot)$/,
                 use: ['file-loader'],
-                include: APP_DIR
             },
             {
                 test: /\.jsx?$/,
@@ -50,7 +60,12 @@ module.exports = {
             title: 'React Redux Tutorial',
             inject: 'body'
         }),
-        new webpack.HotModuleReplacementPlugin() // Enable HMR
+        new webpack.HotModuleReplacementPlugin(), // Enable HMR
+        new webpack.ProvidePlugin({
+            jQuery: 'jquery',
+            $: 'jquery',
+            jquery: 'jquery'
+        })
     ],
     devtool: 'eval-source-map',
     devServer: {
