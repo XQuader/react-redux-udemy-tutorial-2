@@ -19,9 +19,11 @@ export default class SearchBar extends Component {
 
     render () {
         return (
-            <div>
+            <div className="col-md-12">
                 <input onChange={this.handleInputChange}
-                       value={this.state.term}/>
+                       value={this.state.term}
+                       className="col-md-4"
+                />
             </div>
         )
     }
