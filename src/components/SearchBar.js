@@ -7,8 +7,6 @@ export default class SearchBar extends Component {
         this.state = {
             term: ''
         };
-
-        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
     handleInputChange(ev) {
@@ -21,7 +19,7 @@ export default class SearchBar extends Component {
     render () {
         return (
             <div className="search-bar">
-                <input onChange={this.handleInputChange}
+                <input onChange={this.handleInputChange.bind(this)}
                        value={this.state.term}
                 />
             </div>

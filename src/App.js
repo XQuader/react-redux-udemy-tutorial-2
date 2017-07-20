@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import React, {Component} from 'react';
 import YTSearch from 'youtube-api-search';
 import SearchBar from './components/SearchBar';
@@ -39,7 +40,7 @@ export default class App extends Component {
     render() {
         return (
             <div className="container-fluid row">
-                <SearchBar onSearchTermChange={this.videoSearch.bind(this)}/>
+                <SearchBar onSearchTermChange={_.debounce(this.videoSearch.bind(this), 300)}/>
                 <VideoDetail video={this.state.selectedVideo}/>
                 <VideoList videos={this.state.videos}
                            onVideoSelect={this.handleVideoSelect.bind(this)}
