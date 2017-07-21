@@ -1,6 +1,9 @@
-export function selectBook(book) {
+const API_KEY = '2765c51be4accd2bed78b763897bcb74';
+
+export function searchTerm(term) {
+    console.log(term);
     return {
-        type: 'BOOK_SELECTED',
-        payload: book
+        type: 'SEARCH_TERM',
+        payload: {term, API_KEY}
     }
 }
