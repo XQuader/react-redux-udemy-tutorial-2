@@ -3,11 +3,16 @@ import {connect} from 'react-redux';
 
 class BookDetail extends Component{
     render() {
-        return (
-            <div className="book-detail col-sm-8">
-                {this.props.book ? this.props.book.title : ''}
-            </div>
-        )
+        if (this.props.book){
+            return (
+                <div className="book-detail col-sm-8">
+                    <h3>Details for:</h3>
+                    <span>{this.props.book.title}</span>
+                </div>
+            )
+        } else {
+            return <span>Select a book to get started.</span>
+        }
     }
 }
 
