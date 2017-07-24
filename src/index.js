@@ -6,7 +6,7 @@ import ReduxPromise from 'redux-promise';
 import { Provider } from 'react-redux';
 
 import reducers from './reducers';
-import App from './components/App';
+import App from './App';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -25,6 +25,6 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
-    module.hot.accept('./components/App', () => render(require('./components/App').default));
+    module.hot.accept('./App', () => render(require('./App').default));
     module.hot.accept('./reducers', () => store.replaceReducer(require("./reducers/index").default));
 }
