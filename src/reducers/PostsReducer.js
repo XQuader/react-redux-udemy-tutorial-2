@@ -6,6 +6,7 @@ export default function(state = [], action) {
         case FETCH_POSTS:
             return _.reduce(action.payload.data, (memo, item) => {
                 memo[item.id] = _.omit(item, 'id');
+                return memo;
             }, {});
         default:
             return state;
