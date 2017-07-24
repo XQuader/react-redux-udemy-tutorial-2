@@ -3,7 +3,7 @@ import _ from 'underscore';
 import {Sparklines, SparklinesLine, SparklinesReferenceLine} from "react-sparklines";
 
 function average(data) {
-    return _.reduce(data, function(memo, num){ return memo + num; }, 0)/data.length;
+    return Math.round(_.reduce(data, function(memo, num){ return memo + num; }, 0)/data.length);
 }
 
 export default (props) => {
