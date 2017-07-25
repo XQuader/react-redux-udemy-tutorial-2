@@ -1,4 +1,4 @@
-import {FETCH_POSTS, CREATE_POST} from "../actions/index";
+import {FETCH_POSTS, FETCH_POST} from "../actions/index";
 import _ from 'underscore';
 
 export default function(state = {}, action) {
@@ -8,6 +8,9 @@ export default function(state = {}, action) {
                 memo[item.id] = item;
                 return memo;
             }, {});
+        case FETCH_POST:
+            return {...state, [action.payload.data.id] : action.payload.data};
+
         default:
             return state;
     }
