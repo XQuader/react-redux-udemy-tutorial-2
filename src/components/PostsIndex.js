@@ -1,6 +1,7 @@
+import _ from 'underscore';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import _ from 'underscore';
+import {Link} from 'react-router-dom';
 import {fetchPosts} from '../actions';
 
 class PostsIndex extends Component {
@@ -19,9 +20,11 @@ class PostsIndex extends Component {
     }
 
     render() {
-        console.log(this.props.posts);
         return (
             <div className="col-md-12">
+                <div className="text-right">
+                    <Link className="btn btn-primary" to="/posts/new">Add a post</Link>
+                </div>
                 <h3>Posts</h3>
                 <ul className="list-group">
                     {this.renderPosts()}
