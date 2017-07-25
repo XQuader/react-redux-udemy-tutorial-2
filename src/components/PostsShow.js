@@ -29,7 +29,7 @@ class PostsShow extends Component {
         return (
             <div className="col-md-12">
                 <Link to="/">Back to index</Link>
-                <button className="btn btn-primary pull-right" onClick={this.handleDelete}>Delete</button>
+                <button className="btn btn-danger pull-right" onClick={this.handleDelete}>Delete</button>
                 <h3>{post.title}</h3>
                 <h6>Categories: {post.categories}</h6>
                 <p>{post.content}</p>
