@@ -12,40 +12,52 @@ export function fetchPosts() {
     const url = `${ROOT_URL}/posts${API_KEY}`;
     const request = axios.get(url);
 
-    return {
-        type: FETCH_POSTS,
-        payload: request
-    }
+    return dispatch => {
+        request.then(({data}) => dispatch({
+            type: FETCH_POSTS,
+            payload: data
+        }));
+    };
 }
 
 export function fetchPost(postId) {
     const url = `${ROOT_URL}/posts/${postId}${API_KEY}`;
     const request = axios.get(url);
 
-    return {
-        type: FETCH_POST,
-        payload: request
-    }
+    return dispatch => {
+        request.then(({data}) => dispatch({
+            type: FETCH_POST,
+            payload: data
+        }));
+    };
 }
 
 export function deletePost(postId, callback) {
     const url = `${ROOT_URL}/posts/${postId}${API_KEY}`;
-    const request = axios.delete(url)
-        .then(callback);
+    const request = axios.delete(url);
 
-    return {
-        type: DELETE_POST,
-        payload: postId
-    }
+    return dispatch => {
+        request.then(() => {
+            callback();
+            dispatch({
+                type: DELETE_POST,
+                payload: postId
+            });
+        });
+    };
 }
 
 export function createPost(post, callback) {
     const url = `${ROOT_URL}/posts${API_KEY}`;
-    const request = axios.post(url, post)
-        .then(callback);
+    const request = axios.post(url, post);
 
-    return {
-        type: CREATE_POST,
-        payload: request
-    }
+    return dispatch => {
+        request.then(({data}) => {
+            callback();
+            dispatch({
+                type: CREATE_POST,
+                payload: data
+            });
+        });
+    };
 }
