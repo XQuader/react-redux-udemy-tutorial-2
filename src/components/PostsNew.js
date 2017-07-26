@@ -1,8 +1,24 @@
+import _ from 'underscore';
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {createPost} from "../actions/index";
+
+const FIELDS = {
+    title: {
+        label: 'Title For Post',
+        type:'input'
+    },
+    categories: {
+        label: 'Categories',
+        type:'input'
+    },
+    content: {
+        label: 'Content',
+        type: 'textarea'
+    }
+};
 
 class PostsNew extends Component {
     constructor(props) {
@@ -18,17 +34,12 @@ class PostsNew extends Component {
 
         return (
             <div className={className}>
-                <label
-                    htmlFor={field.name}
-                    className="control-label">{field.label}</label>
-                <input
-                    type="text"
-                    name={field.name}
-                    id={field.name}
+                <label className="control-label">{field.label}</label>
+                <field.type
                     {...field.input}
                     className="form-control"
                 />
-                <span className="text-danger">{field.meta.touched ? field.meta.error : ''}</span>
+                <span className="text-danger">{touched ? error : ''}</span>
             </div>
         );
     }
@@ -41,23 +52,18 @@ class PostsNew extends Component {
         const {handleSubmit} = this.props;
 
         return (
-            <form onSubmit={handleSubmit(this.handleSubmit)}
-                className="col-md-12">
-                <Field
-                    name="title"
-                    label="Title For Post"
-                    component={this.renderField}
-                />
-                <Field
-                    name="categories"
-                    label="Categories"
-                    component={this.renderField}
-                />
-                <Field
-                    name="content"
-                    label="Post Content"
-                    component={this.renderField}
-                />
+            <form onSubmit={handleSubmit(this.handleSubmit)} className="col-md-12">
+                <h3>Create a New Post</h3>
+                {_.map(FIELDS, (field, name) => {
+                    return (
+                        <Field
+                            key={name}
+                            name={name}
+                            {...field}
+                            component={this.renderField}
+                        />
+                    )
+                })}
                 <button type="submit" className="btn btn-primary">Submit</button>
                 <Link className="btn btn-danger" to="/">Cancel</Link>
             </form>
@@ -68,12 +74,10 @@ class PostsNew extends Component {
 function validate(values) {
     const errors = {};
 
-    if (!values.title)
-        errors.title = 'Should not be empty';
-    if (!values.categories)
-        errors.categories = 'Should not be empty';
-    if (!values.content)
-        errors.content = 'Should not be empty';
+    _.each(FIELDS, (props, field) => {
+        if (!values[field])
+            errors[field] = 'Should not be empty';
+    });
 
     return errors;
 }
