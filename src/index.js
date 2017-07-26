@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 
 import reducers from './reducers';
 import App from './App';
 
-const createStoreWithMiddleware = applyMiddleware(ReduxThunk)(createStore);
-const store = createStoreWithMiddleware(reducers);
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(ReduxThunk)));
 
 const render = Component => {
     ReactDOM.render(
