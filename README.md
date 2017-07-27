@@ -1,1 +1,1 @@
-# redux-simple-starter
+# react-redux-advanced-udemy-tutorial
