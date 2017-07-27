@@ -7,7 +7,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 
 import reducers from './reducers';
-import App from './App';
+import App from './components/App';
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(ReduxThunk)));
 
@@ -25,6 +25,6 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
-    module.hot.accept('./App', () => render(require('./App').default));
+    module.hot.accept('./components/App', () => render(require('./components/App').default));
     module.hot.accept('./reducers', () => store.replaceReducer(require("./reducers/index").default));
 }

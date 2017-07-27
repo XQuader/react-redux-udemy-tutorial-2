@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
-import PostsIndex from './components/PostsIndex';
-import PostsNew from './components/PostsNew';
-import PostsShow from './components/PostsShow';
+import PostsIndex from './PostsIndex';
+import PostsNew from './PostsNew';
+import PostsShow from './PostsShow';
 
 
-import './less/style.less'
+import '../../style/style.less'
 
 export default class App extends Component {
     render() {
