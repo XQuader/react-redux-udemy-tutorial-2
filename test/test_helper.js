@@ -13,7 +13,7 @@ import chaiJquery from 'chai-jquery';
 const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
 global.window = jsdom.window;
 global.document = jsdom.window.document;
-const $ = jquery(global.window);
+const $ = jquery(jsdom.window);
 
 // build 'renderComponent' helper that should render a given react class
 function renderComponent(ComponentClass, props, state) {
