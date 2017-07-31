@@ -10,7 +10,8 @@ describe('CommentList', () => {
             'second',
             'third'
         ];
-        component = renderComponent(CommentList, {comments});
+
+        component = renderComponent(CommentList, null, {comments});
     });
 
     it('has correct class', () => {
