@@ -1,20 +1,18 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
-import '../../style/style.less'
+import Header from './Header';
+import Resources from './Resources';
 
-function Dummy(props) {
-    return <div>Hello</div>
-}
+import '../../style/style.less'
 
 export default class App extends Component {
     render() {
         return (
             <BrowserRouter>
-                <div>
-                    <Switch>
-                        <Route path="/" component={Dummy}/>
-                    </Switch>
+                <div className="col-md-12">
+                    <Header/>
+                    <Route path="/resources" component={Resources}/>
                 </div>
             </BrowserRouter>
         )
