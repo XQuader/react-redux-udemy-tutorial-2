@@ -9,7 +9,10 @@ class Header extends Component {
     };
 
     authButton() {
-        return <button className="btn navbar-btn" onClick={this.handleClick}>{this.props.authenticated ? 'Sign Out' : 'Sign In'}</button>
+        const className = `btn navbar-btn ${this.props.authenticated ? ' btn-danger' : ' btn-primary'}`;
+        const label = this.props.authenticated ? 'Sign Out' : 'Sign In';
+
+        return <button className={className} onClick={this.handleClick}>{label}</button>
     }
 
     render() {

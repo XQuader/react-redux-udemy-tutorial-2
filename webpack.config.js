@@ -68,7 +68,7 @@ module.exports = {
             jquery: 'jquery'
         })
     ],
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
     devServer: {
         port: 3000,
         host: 'localhost',
