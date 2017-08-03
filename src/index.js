@@ -1,20 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { Provider } from 'react-redux';
+import {AppContainer} from 'react-hot-loader';
+import {createStore, applyMiddleware} from 'redux';
+import PromiseMiddleware from './middlewares/PromiseMiddleware';
+import {composeWithDevTools} from 'redux-devtools-extension';
+import {Provider} from 'react-redux';
 
 import reducers from './reducers';
 import App from './components/App';
 
-const store = createStore(reducers, composeWithDevTools(applyMiddleware()));
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(PromiseMiddleware)));
 
 const render = Component => {
     ReactDOM.render(
         <AppContainer>
             <Provider store={store}>
-                <Component />
+                <Component/>
             </Provider>
         </AppContainer>,
         document.getElementById('root')
