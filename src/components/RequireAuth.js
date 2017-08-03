@@ -8,11 +8,9 @@ export default function(ComposedComponent) {
             router: PropTypes.object
         };
 
-        componentDidMount() {
+        componentWillMount() {
             if (!this.props.authenticated) {
-                this.timer = setTimeout(() => {
-                    this.context.router.history.push('/');
-                }, 1000);
+               this.context.router.history.push('/');
             }
         }
 
@@ -24,9 +22,9 @@ export default function(ComposedComponent) {
             return <ComposedComponent {...this.props} />
         }
 
-        componentWillUnmount() {
-            if (this.timer) {
-                clearTimeout(this.timer);
+        componentWillUpdate(nextProps) {
+            if (!nextProps.authenticated) {
+                this.context.router.history.push('/');
             }
         }
     }
