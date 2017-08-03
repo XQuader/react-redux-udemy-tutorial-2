@@ -6,7 +6,7 @@ import '../../style/style.less'
 export default class App extends Component {
     render() {
         return (
-            <div className="row">
+            <div className="container">
                 <div className="col-md-12">
                     <UserList/>
                 </div>
