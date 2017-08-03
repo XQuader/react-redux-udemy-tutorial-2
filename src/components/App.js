@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import UserList from './UserList';
 
 import '../../style/style.less'
 
@@ -7,7 +8,7 @@ export default class App extends Component {
         return (
             <div className="row">
                 <div className="col-md-12">
-                    Hello
+                    <UserList/>
                 </div>
             </div>
         )
