@@ -3,20 +3,14 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import '../../style/style.less'
 
-function Dummy(props) {
-    return <div>Hello</div>
-}
-
 export default class App extends Component {
     render() {
         return (
-            <BrowserRouter>
-                <div>
-                    <Switch>
-                        <Route path="/" component={Dummy}/>
-                    </Switch>
+            <div className="row">
+                <div className="col-md-12">
+                    Hello
                 </div>
-            </BrowserRouter>
+            </div>
         )
     }
 }

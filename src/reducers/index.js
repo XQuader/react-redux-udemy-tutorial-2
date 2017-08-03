@@ -1,11 +1,8 @@
 import {combineReducers} from 'redux';
-
-function DummyReducer(state = {}, action) {
-    return state;
-};
+import UsersReducer from './UsersReducer';
 
 const rootReducer = combineReducers({
-    dummy: DummyReducer
+    users: UsersReducer
 });
 
 export default rootReducer;
