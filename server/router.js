@@ -1,7 +1,7 @@
+const Authentication = require('./controllers/authentication');
+
 module.exports = (app) => {
     "use strict";
 
-    app.get('/', (req, res, next) => {
-        res.send(['water', 'phone', 'paper']);
-    });
+    app.post('/signup', Authentication.signup);
 };
