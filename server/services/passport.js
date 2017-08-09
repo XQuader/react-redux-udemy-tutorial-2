@@ -7,7 +7,8 @@ const ExtractJwt = require('passport-jwt').ExtractJwt;
 
 
 const jwtOptions = {
-
+    jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+    secretOrKey: config.secret
 };
 
 const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
@@ -25,3 +26,5 @@ const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
         }
     });
 });
+
+passport.use(jwtLogin);
