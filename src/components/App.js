@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import Header from './Header';
+import SignUp from './Auth/SignUp';
+import SignIn from './Auth/SignIn';
 
 import '../../style/style.less'
 
 function Dummy(props) {
-    return <div>Hello</div>
+    return <div>Greetings</div>
 }
 
 export default class App extends Component {
@@ -12,7 +15,9 @@ export default class App extends Component {
         return (
             <BrowserRouter>
                 <div>
+                    <Header/>
                     <Switch>
+                        <Route path="/signin" component={SignIn}/>
                         <Route path="/" component={Dummy}/>
                     </Switch>
                 </div>

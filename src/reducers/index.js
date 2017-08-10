@@ -1,11 +1,10 @@
 import {combineReducers} from 'redux';
-
-function DummyReducer(state = {}, action) {
-    return state;
-};
+import {reducer as form} from 'redux-form';
+import AuthReducer from './AuthReducer';
 
 const rootReducer = combineReducers({
-    dummy: DummyReducer
+    auth: AuthReducer,
+    form
 });
 
 export default rootReducer;
