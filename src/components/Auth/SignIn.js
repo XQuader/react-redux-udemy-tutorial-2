@@ -1,6 +1,6 @@
 import _ from 'underscore';
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {reduxForm, Field} from 'redux-form';
 import {signinUser} from '../../actions/index';
@@ -21,7 +21,7 @@ const FIELDS = {
 class SignIn extends Component {
     handleSubmit = ({email, password}) => {
         console.log(`${email} ${password}`);
-        this.props.signinUser(email, password);
+        this.props.signinUser(email, password, this.props.history);
     };
 
     renderField(field){
@@ -78,6 +78,9 @@ function validate(values) {
 export default reduxForm({
     validate,
     form: 'SignIn'
-})(
-    connect(null, {signinUser})(SignIn)
+})
+(
+    withRouter(
+        connect(null, {signinUser})(SignIn)
+    )
 );
