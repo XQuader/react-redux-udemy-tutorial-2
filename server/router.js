@@ -9,7 +9,7 @@ module.exports = (app) => {
     "use strict";
 
     app.get('/', requireAuth, (req, res) => {
-        return res.send({hi: 'there'});
+        return res.send({message: 'Super secret code is ABC123'});
     });
     app.post('/signin', requireSignin, Authentication.signin);
     app.post('/signup', Authentication.signup);
