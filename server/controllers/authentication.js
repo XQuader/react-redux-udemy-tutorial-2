@@ -30,3 +30,5 @@ exports.signup = ({body: {email, password}}, res, next) => {
         });
     });
 };
+
+exports.signin = ({user}, res, next) => res.json({token: tokenForUser(user)});
