@@ -7,12 +7,14 @@ import {signinUser} from '../../actions/index';
 
 const FIELDS = {
     email: {
-        type: 'input',
+        element: 'input',
+        type: 'text',
         label: 'Email:',
         placeholder: 'Enter valid email'
     },
     password: {
-        type: 'input',
+        element: 'input',
+        type: 'password',
         label: 'Password:',
         placeholder: 'Enter valid password'
     }
@@ -24,6 +26,16 @@ class SignIn extends Component {
         this.props.signinUser(email, password, this.props.history);
     };
 
+    renderAlert() {
+        if (this.props.errorMessage) {
+            return (
+                <div className="alert alert-danger">
+                    <strong>Oops!</strong> {this.props.errorMessage}
+                </div>
+            )
+        }
+    }
+
     renderField(field){
         const {meta : {touched, error}} = field;
         const className = `form-group ${touched && error ? ' has-error' : ''}`;
@@ -31,8 +43,9 @@ class SignIn extends Component {
         return (
             <div className={className}>
                 <label className="control-label">{field.label}</label>
-                <field.type
+                <field.element
                     {...field.input}
+                    type={field.type}
                     placeholder={field.placeholder}
                     className="form-control"
                 />
@@ -57,6 +70,7 @@ class SignIn extends Component {
                         />
                     )
                 })}
+                {this.renderAlert()}
                 <button type="submit" className="btn btn-primary">Submit</button>
                 <Link className="btn btn-danger" to="/">Cancel</Link>
             </form>
@@ -75,12 +89,18 @@ function validate(values) {
     return errors;
 }
 
+function mapStateToProps({auth: {errorMessage}}) {
+    return {
+        errorMessage
+    }
+}
+
 export default reduxForm({
     validate,
     form: 'SignIn'
 })
 (
     withRouter(
-        connect(null, {signinUser})(SignIn)
+        connect(mapStateToProps, {signinUser})(SignIn)
     )
 );

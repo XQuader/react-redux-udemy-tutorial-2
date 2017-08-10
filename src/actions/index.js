@@ -27,7 +27,7 @@ export function signinUser(email, password, history) {
             })
             .catch(err => {
                 console.log(err);
-                dispatch(authError(err));
+                dispatch(authError('Bad login info'));
             });
     }
 }
