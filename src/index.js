@@ -8,8 +8,14 @@ import { Provider } from 'react-redux';
 
 import reducers from './reducers';
 import App from './components/App';
+import {AUTH_USER} from "./actions/types";
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(ReduxThunk)));
+const token = localStorage.getItem('token');
+
+if (token) {
+    store.dispatch({type: AUTH_USER});
+}
 
 const render = Component => {
     ReactDOM.render(
