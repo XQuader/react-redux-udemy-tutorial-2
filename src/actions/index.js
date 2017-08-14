@@ -31,3 +31,27 @@ export function signinUser(email, password, history) {
             });
     }
 }
+
+export function signupUser(email, password, history) {
+    return (dispatch) => {
+        axios.post(`${ROOT_URL}/signup`, {email, password})
+            .then(response => {
+                dispatch(authUser());
+                localStorage.setItem('token', response.data.token);
+                history.push('/feature');
+            })
+            .catch(err => {
+                console.log(err);
+                dispatch(authError('Bad reg info'));
+            });
+    }
+}
+
+
+export function signoutUser() {
+    localStorage.removeItem('token');
+
+    return {
+        type: UNAUTH_USER
+    }
+}

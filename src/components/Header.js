@@ -9,8 +9,8 @@ const ROUTES = {
             label: 'Feature',
             auth: true
         },
-        logout: {
-            label: 'Logout',
+        signout: {
+            label: 'Sign Out',
             auth: true
         }
     },
@@ -28,8 +28,8 @@ const ROUTES = {
 
 class Header extends Component {
     renderLinks(){
-        const {auth} = this.props;
-        const visibleRoutes = auth.authenticated ? ROUTES.auth : ROUTES.unauth;
+        const {authenticated} = this.props;
+        const visibleRoutes = authenticated ? ROUTES.auth : ROUTES.unauth;
 
         return _.map(visibleRoutes, (route, path) => <li key={path} className="nav-item"><Link to={path} className="nav-link">{route.label}</Link></li>)
     }
@@ -46,8 +46,8 @@ class Header extends Component {
     }
 }
 
-function mapStateToProps({auth}) {
-    return {auth};
+function mapStateToProps({auth: {authenticated}}) {
+    return {authenticated};
 }
 
 export default connect(mapStateToProps)(Header);

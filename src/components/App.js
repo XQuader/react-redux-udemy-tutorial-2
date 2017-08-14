@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Header from './Header';
 import SignUp from './Auth/SignUp';
 import SignIn from './Auth/SignIn';
+import SignOut from './Auth/SignOut';
 
 import '../../style/style.less'
 
@@ -17,7 +18,9 @@ export default class App extends Component {
                 <div>
                     <Header/>
                     <Switch>
+                        <Route path="/signout" component={SignOut}/>
                         <Route path="/signin" component={SignIn}/>
+                        <Route path="/signup" component={SignUp}/>
                         <Route path="/" component={Dummy}/>
                     </Switch>
                 </div>
