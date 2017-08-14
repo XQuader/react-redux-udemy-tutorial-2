@@ -28,7 +28,6 @@ const FIELDS = {
 
 class SignUp extends Component {
     handleSubmit = ({email, password}) => {
-        console.log(`${email} ${password}`);
         this.props.signupUser(email, password, this.props.history);
     };
 

@@ -26,7 +26,6 @@ export function signinUser(email, password, history) {
                 history.push('/feature');
             })
             .catch(err => {
-                console.log(err);
                 dispatch(authError('Bad login info'));
             });
     }
@@ -41,8 +40,7 @@ export function signupUser(email, password, history) {
                 history.push('/feature');
             })
             .catch(err => {
-                console.log(err);
-                dispatch(authError('Bad reg info'));
+                dispatch(authError(err.response.data.error));
             });
     }
 }
